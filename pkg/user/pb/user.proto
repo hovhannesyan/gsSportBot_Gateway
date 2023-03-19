@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "./pkg/pb";
+
+service User {
+  rpc AddUser (AddUserRequest) returns (AddUserResponse) {}
+
+  rpc IsAdmin (IsAdminRequest) returns (IsAdminResponse) {}
+
+  rpc GetUsersById (GetUsersByIdRequest) returns (GetUsersByIdResponse) {}
+}
+
+message AddUserRequest {
+  int64 id = 1;
+  string username = 2;
+  string name = 3;
+  string phone = 4;
+  bool isAdmin = 5;
+}
+
+message AddUserResponse {
+  string message = 1;
+}
+
+message IsAdminRequest {
+  int64 id = 1;
+}
+
+message IsAdminResponse {
+  bool isAdmin = 1;
+}
+
+message GetUsersByIdRequest {
+  repeated int64 id = 1;
+}
+
+message UserData {
+  int64 id = 1;
+  string username = 2;
+  string name = 3;
+  string phone = 4;
+  bool isAdmin = 5;
+}
+
+message GetUsersByIdResponse {
+  repeated UserData data = 1;
+}
